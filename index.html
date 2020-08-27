@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>图片切换</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#outer{
+				width: 400px;
+				margin: 50px auto;
+				padding: 10px;
+				background-color: black;
+				text-align: center;//按键居中(设置文本居中,内联元素当做文本)
+			}
+			p{
+				color: aliceblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="outer">
+			<p>一共4张图片，当前是第1张</p>
+			<img src="img/1.jpg" />
+		
+			<button type="button" id="prev"><上一张</button>
+			<button type="button" id="next">下一张></button>
+		</div>
+		
+		<script type="text/javascript">
+			/*
+				点击按钮切换图片
+			*/
+		   
+			//获取两个按钮
+			let prev = document.getElementById("prev");
+			let next = document.getElementById("next");
+			let p = document.getElementsByTagName("p")[0];
+			//获取Img标签
+			let img = document.getElementsByTagName("img")[0];
+			let imgArr = ["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"];
+			let i = 0;
+			
+			//分别为两个按钮绑定单击响应函数
+			prev.onclick=function(){
+				i--;
+				if(i===-1){
+					i=imgArr.length-1;
+				}
+				img.src=imgArr[i];
+				p.innerHTML="一共"+imgArr.length+"张图片，当前是第"+(i+1)+"张";
+			};
+			next.onclick=function(){
+				i++;
+				if(i===imgArr.length){
+					i=0;
+				}
+				img.src=imgArr[i];
+				p.innerHTML="一共"+imgArr.length+"张图片，当前是第"+(i+1)+"张";
+			};
+		</script>
+	</body>
+</html>
